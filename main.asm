@@ -1,4 +1,4 @@
-; Код ассемблер БЭВМ для доп задания 4 лабораторной
+; Код ассемблер для доп задания 4 лабораторной
 ; Написать КП, реализующий сложение 3 знаковых чисел, где ПП их складывает, 
 ; а П их просто передает аргументы ПП.
 ; ВАЖНО: использоваться команды CALL и RET нельзя, из надо реализовать через 
@@ -6,10 +6,10 @@
 
 
 ORG 0x3FD
-RESULT: WORD 0x1222
-X:      WORD 0x1333
-Y:      WORD 0x0008
-Z:      WORD 0xFFFF
+RESULT: WORD 0x9999
+X:      WORD 0x1
+Y:      WORD 0x1
+Z:      WORD 0x2
 
 ORG 0x401
 R1:     WORD 0x40B
@@ -18,25 +18,26 @@ R3:     WORD 0x415
 
 ORG 0x404
 START:  CLA
-        ST $RESULT
+        ST RESULT
 
-        LD $R1
+        LD R1
         PUSH
-        LD $X
+        LD X
         PUSH
         JUMP $FUNC
 
-        LD $R2
+        LD R2
         PUSH
-        LD $Y
+        LD Y
         PUSH
         JUMP $FUNC
 
-        LD $R3
+        LD R3
         PUSH
-        LD $Z
+        LD Z
         PUSH
         JUMP $FUNC
+        HLT
 
 ORG 0x600
 FUNC:   POP
